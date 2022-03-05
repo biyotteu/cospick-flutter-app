@@ -39,7 +39,7 @@ dependencies:
   flutter_facebook_auth: ^4.0.1
   google_sign_in: ^5.2.3
   sign_in_with_apple: ^3.3.0
-
+  naver_map_plugin: ^0.9.6
 
 dev_dependencies:
   flutter_test:
@@ -65,22 +65,9 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/characters.svg
-    - assets/applelogo.svg
-    - assets/facebooklogo.svg
-    - assets/kakaologo.svg
-    - assets/googlelogo.svg
-    - assets/editbutton.png
-    - assets/icons/icon_bookmark.png
-    - assets/icons/icon_bookmark_on.png
-    - assets/icons/icon_home.png
-    - assets/icons/icon_home_on.png
-    - assets/icons/icon_search.png
-    - assets/icons/icon_search_on.png
-    - assets/icons/icon_user.png
-    - assets/icons/icon_user_on.png
-  #   - images/a_dot_burr.jpeg
-  #   - images/a_dot_ham.jpeg
+    - assets/
+    - assets/icons/
+    - assets/svg/characters/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

@@ -1,4 +1,5 @@
 import 'package:cospick/screens/login.dart';
+import 'package:cospick/screens/writecos.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
@@ -43,12 +44,13 @@ class _MyHomePageState extends State<MyHomePage> {
   TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static const List<Widget> _widgetOptions = <Widget>[
     Text(
-      'Index 0: Home',
+      'home',
       style: optionStyle,
     ),
     Search(),
+    WriteCos(),
     Text(
-      'Index 1: Business',
+      'bookmark',
       style: optionStyle,
     ),
     Mylogin()
@@ -107,6 +109,11 @@ class _MyHomePageState extends State<MyHomePage> {
                   label: ""
               ),
               BottomNavigationBarItem(
+                  icon: Image.asset('assets/icons/icon_write_off.png'),
+                  activeIcon: Image.asset('assets/icons/icon_write_on.png'),
+                  label: ""
+              ),
+              BottomNavigationBarItem(
                   icon: Image.asset('assets/icons/icon_bookmark.png'),
                   activeIcon: Image.asset('assets/icons/icon_bookmark_on.png'),
                   label: ""
@@ -124,27 +131,6 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         )
       )
-    );
-  }
-}
-
-class FirstRoute extends StatelessWidget {
-  const FirstRoute({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: ElevatedButton(
-          child: Text('Open route'),
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => Mylogin()),
-            );
-          },
-        ),
-      ),
     );
   }
 }

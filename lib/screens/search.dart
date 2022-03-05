@@ -1,5 +1,6 @@
 import 'dart:ffi';
 
+import 'package:cospick/common/appbar.dart';
 import 'package:cospick/common/logo.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -31,21 +32,7 @@ class _SearchPage extends State<SearchPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          leading: const Icon(
-            Icons.chevron_left,
-            color: Colors.black,
-          ),
-          elevation: 0.0,
-          toolbarHeight: 40,
-          backgroundColor: Colors.white,
-          title:const Text('검색'),
-          centerTitle: true,
-          titleTextStyle: const TextStyle(
-            color: Colors.black,
-            fontWeight: FontWeight.bold
-          ),
-        ),
+        appBar: MyAppBar("검색",(){}),
         body: const WhereCos(),
     );
   }
@@ -107,10 +94,10 @@ class _WhereCosState extends State<WhereCos> {
                       ),
                     ),
                     Container(
-                      margin: EdgeInsets.only(right: 4),
+                      margin: const EdgeInsets.only(right: 4),
                       child: IconButton(
                           onPressed: (){},
-                          icon: Icon(Icons.search)
+                          icon: const Icon(Icons.search)
                       ),
                     ),
                   ],
