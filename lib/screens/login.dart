@@ -1,10 +1,6 @@
-
-
-import 'package:cospick/common/logo.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:kakao_flutter_sdk/all.dart';
-
 
 class Mylogin extends StatelessWidget {
   const Mylogin({Key? key}) : super(key: key);
@@ -14,6 +10,9 @@ class Mylogin extends StatelessWidget {
     print(authCode);
   }
 
+  void initState(){
+
+  }
   @override
   Widget build(BuildContext context) {
 
