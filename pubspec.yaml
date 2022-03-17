@@ -39,7 +39,7 @@ dependencies:
   flutter_facebook_auth: ^4.0.1
   google_sign_in: ^5.2.3
   sign_in_with_apple: ^3.3.0
-  naver_map_plugin: ^0.9.6
+  webview_flutter: ^3.0.1
 
 dev_dependencies:
   flutter_test:
@@ -52,6 +52,13 @@ dev_dependencies:
   # rules and activating additional ones.
   flutter_lints: ^1.0.0
 
+  flutter_launcher_icons: "^0.9.2"
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path_android: "icons/cospick.png"
+  image_path_ios: "icons/cospick.png"
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 

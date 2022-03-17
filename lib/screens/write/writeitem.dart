@@ -2,9 +2,10 @@ import 'dart:async';
 
 import 'package:cospick/common/nextbutton.dart';
 import 'package:flutter/material.dart';
-import 'package:naver_map_plugin/naver_map_plugin.dart';
+import 'package:kakaomap_webview/kakaomap_webview.dart';
 
 import '../../common/appbar.dart';
+import 'kakaoMap.dart';
 
 class WriteItem extends StatefulWidget {
   const WriteItem({Key? key}) : super(key: key);
@@ -15,15 +16,22 @@ class WriteItem extends StatefulWidget {
 
 class _WriteItemState extends State<WriteItem> {
 
-  Completer<NaverMapController> _controller = Completer();
-
   int _current = 0;
   List<AppBar> bar = [];
-  void _onMapCreated(NaverMapController controller) {
-    if (_controller.isCompleted) _controller = Completer();
-    _controller.complete(controller);
-  }
   List<Widget> Form = [];
+
+  start() async{
+    KakaoMapUtil util = KakaoMapUtil();
+    // String url = await util.getResolvedLink(
+    //     util.getKakaoMapURL(37.402056, 127.108212, name: 'Kakao 본사'));
+
+    /// This is short form of the above comment
+    String url =
+    await util.getMapScreenURL(37.402056, 127.108212, name: 'Kakao 본사');
+
+    Navigator.push(
+        context, MaterialPageRoute(builder: (_) => KakaoMapScreen(url: url)));
+  }
 
   @override
   void didChangeDependencies() {
@@ -44,11 +52,17 @@ class _WriteItemState extends State<WriteItem> {
     Form.add(
       Stack(
         children: [
-          NaverMap(onMapCreated: _onMapCreated),
-          Positioned(
-              child: myButton("다음단계", (){}),
-              bottom: 10,
-          )
+          Container(),
+          Expanded(
+              child: Container(
+                alignment: Alignment.bottomCenter,
+                child: myButton("다음단계",(){
+                  setState(() {
+                    _current++;
+                  });
+                }),
+              )
+          ),
         ],
       )
     );
@@ -57,11 +71,8 @@ class _WriteItemState extends State<WriteItem> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: bar[_current],
-      // body: Form[_current],
-      body: NaverMap(
-        onMapCreated: _onMapCreated,
-      ),
+      appBar: bar[_current],
+      body: Form[_current],
     );
   }
 }
