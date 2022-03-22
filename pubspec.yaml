@@ -39,7 +39,9 @@ dependencies:
   flutter_facebook_auth: ^4.0.1
   google_sign_in: ^5.2.3
   sign_in_with_apple: ^3.3.0
-  naver_map_plugin: ^0.9.6
+#  naver_map_plugin: ^0.9.6
+  naver_map_plugin:
+    git: https://github.com/LBSTECH/naver_map_plugin.git
   http: ^0.13.4
 
 dev_dependencies:

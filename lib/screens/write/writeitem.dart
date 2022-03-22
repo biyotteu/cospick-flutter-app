@@ -85,7 +85,7 @@ class _WriteItemState extends State<WriteItem> {
                   context,
                   MaterialPageRoute(builder: (context) => SearchPlace()),
                 );
-                debugPrint(place.title);
+                debugPrint(place.place_name);
                 debugPrint("!!!!!!!!!!!!!!!!!");
               },
             ),

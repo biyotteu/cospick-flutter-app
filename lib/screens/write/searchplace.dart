@@ -15,28 +15,33 @@ class _SearchPlaceState extends State<SearchPlace> {
   List<Widget> _placesWidget = [];
   void _submit(String text) async{
     final res = await http.get(
-        Uri.parse("https://openapi.naver.com/v1/search/local.json?display=10&query="+text+""),
-        headers: {"X-Naver-Client-Id":"CJIPetUmj4W7HzUqvGYx","X-Naver-Client-Secret":"w4kZWyMloH"}
+        Uri.parse("https://dapi.kakao.com/v2/local/search/keyword.json?query="+text),
+        headers: {"Authorization":"KakaoAK e29f627b9e9dc99381e0b7cd359c1605"}
     );
-    debugPrint(res.statusCode.toString());
+
     if(res.statusCode == 200){
+
       Map<String, dynamic> json = jsonDecode(res.body);
-      final int total = json['display'];
+      // final int total = json['display'];
       List<Widget> items = [];
-      json['items'].forEach((cur){
+      debugPrint(json['documents'].toString());
+      debugPrint("------------------------------------------");
+      json['documents'].forEach((cur){
         Place p = Place.fromJson(cur);
-        p.title = p.title.replaceAll("<b>", "").replaceAll("</b>", "");
+        p.place_name = p.place_name.replaceAll("<b>", "").replaceAll("</b>", "");
         items.add(
           InkWell(
             child: Container(
                 padding: const EdgeInsets.all(10),
+                margin: const EdgeInsets.only(left: 5,right: 5,bottom: 5),
+
                 decoration: const BoxDecoration(
                     border: Border(
                         bottom: BorderSide(
-                            width: 0.5,
+                            width: 0.4,
                             color: Colors.black26
-                        )
-                    )
+                        ),
+                    ),
                 ),
                 child: Row(
                   children: [
@@ -47,15 +52,15 @@ class _SearchPlaceState extends State<SearchPlace> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          p.title,
+                          p.place_name,
                           style: const TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 17,
                           ),
                         ),
-                        SizedBox(height: 3,),
+                        const SizedBox(height: 3,),
                         Text(
-                          p.address,
+                          p.address_name,
                           style: const TextStyle(
                             fontSize: 11,
                           ),
@@ -103,8 +108,11 @@ class _SearchPlaceState extends State<SearchPlace> {
           onSubmitted: _submit,
         ),
       ),
-      body: ListView(
-        children: _placesWidget,
+      body: Container(
+        margin: EdgeInsets.only(top: 5),
+        child: ListView(
+          children: _placesWidget,
+        ),
       )
     );
   }
