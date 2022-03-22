@@ -1,10 +1,10 @@
-import 'package:cospick/screens/login.dart';
-import 'package:cospick/screens/writecos.dart';
+import 'package:cospick/screens/login/login.dart';
+import 'package:cospick/screens/write/writecos.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:kakao_flutter_sdk/all.dart';
-import 'package:cospick/screens/search.dart';
+import 'package:cospick/screens/search/search.dart';
 
 const kakaoapikey = '675e0d7545f6d2732848513c830dda4a';
 void main() {
@@ -40,6 +40,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _selectedIndex = 0;
+  int lastIndex = 0;
   static const TextStyle optionStyle =
   TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static const List<Widget> _widgetOptions = <Widget>[

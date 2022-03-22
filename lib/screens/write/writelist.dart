@@ -1,3 +1,4 @@
+import 'package:cospick/screens/write/searchplace.dart';
 import 'package:cospick/screens/write/writeitem.dart';
 import 'package:flutter/material.dart';
 
@@ -40,7 +41,7 @@ class _WriteListState extends State<WriteList> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Image.asset("assets/icons/plus-circle.png",width: 20,height: 20,),
+                  Image.asset("assets/icons/plus-circle.png",width: 20,height: 20),
                   const Text(
                     "코스를 추가해주세요.",
                     textAlign: TextAlign.center,
@@ -57,6 +58,7 @@ class _WriteListState extends State<WriteList> {
             onTap: () {
               Navigator.push(
                 context,
+                // MaterialPageRoute(builder: (context) => WriteItem()),
                 MaterialPageRoute(builder: (context) => WriteItem()),
               );
             },

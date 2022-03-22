@@ -37,12 +37,13 @@
        <meta-data
            android:name="com.naver.maps.map.CLIENT_ID"
            android:value="f6evhfnwqt" />
+       <meta-data
+           android:name="com.kakao.sdk.AppKey"
+           android:value="675e0d7545f6d2732848513c830dda4a" />
     </application>
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
     <uses-permission android:name="android.permission.INTERNET"/>
 
-    <meta-data
-        android:name="com.kakao.sdk.AppKey"
-        android:value="675e0d7545f6d2732848513c830dda4a" />
+
 </manifest>

@@ -1,11 +1,11 @@
 import 'dart:async';
 
 import 'package:cospick/common/nextbutton.dart';
+import 'package:cospick/screens/write/searchplace.dart';
 import 'package:flutter/material.dart';
-import 'package:kakaomap_webview/kakaomap_webview.dart';
-
+import 'package:naver_map_plugin/naver_map_plugin.dart';
 import '../../common/appbar.dart';
-import 'kakaoMap.dart';
+import '../../common/place.dart';
 
 class WriteItem extends StatefulWidget {
   const WriteItem({Key? key}) : super(key: key);
@@ -15,44 +15,82 @@ class WriteItem extends StatefulWidget {
 }
 
 class _WriteItemState extends State<WriteItem> {
-
+  late Place place;
   int _current = 0;
   List<AppBar> bar = [];
   List<Widget> Form = [];
+  Completer<NaverMapController> _controller = Completer();
 
-  start() async{
-    KakaoMapUtil util = KakaoMapUtil();
-    // String url = await util.getResolvedLink(
-    //     util.getKakaoMapURL(37.402056, 127.108212, name: 'Kakao 본사'));
-
-    /// This is short form of the above comment
-    String url =
-    await util.getMapScreenURL(37.402056, 127.108212, name: 'Kakao 본사');
-
-    Navigator.push(
-        context, MaterialPageRoute(builder: (_) => KakaoMapScreen(url: url)));
+  void _onMapCreated(NaverMapController controller) {
+    _controller.complete(controller);
   }
 
+  void _onMapTap(LatLng latLng) {}
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
 
+    final Size size = MediaQuery.of(context).size;
     bar.add(
         MyAppBar("코스작성하기", () {
           Navigator.pop(context);
-        })
+        },true)
     );
     bar.add(
         MyAppBar("코스작성하기", () {
           setState(() {
             _current--;
           });
-        })
+        },true)
     );
     Form.add(
       Stack(
         children: [
-          Container(),
+          NaverMap(
+            buildingHeight: MediaQuery.of(context).size.height,
+            initialCameraPosition: const CameraPosition(
+              target: LatLng(37.566570, 126.978442),
+              zoom: 15,
+            ),
+            onMapCreated: _onMapCreated,
+            // onMapTap: _onMapTap,
+            //markers: _markers,
+            initLocationTrackingMode:
+            LocationTrackingMode.NoFollow,
+          ),
+          Container(
+            alignment: Alignment.topCenter,
+            margin: EdgeInsets.only(top: 15),
+            child: InkWell(
+              child: Container(
+                alignment: Alignment.centerLeft,
+                height: 45,
+                width: size.width * 0.9,
+                padding: const EdgeInsets.only(left: 15),
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: const BorderRadius.all(Radius.circular(10)),
+                    border: Border.all(width: 1, color: Colors.black12)),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    Image.asset("assets/icons/icon_search.png"),
+                    SizedBox(width: 10,),
+                    const Text("검색어를 입력하세요."),
+                  ],
+                ),
+              ),
+              onTap: () async {
+                place = await Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => SearchPlace()),
+                );
+                debugPrint(place.title);
+                debugPrint("!!!!!!!!!!!!!!!!!");
+              },
+            ),
+          ),
+
           Expanded(
               child: Container(
                 alignment: Alignment.bottomCenter,
@@ -71,6 +109,7 @@ class _WriteItemState extends State<WriteItem> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // resizeToAvoidBottomInset : false,
       appBar: bar[_current],
       body: Form[_current],
     );

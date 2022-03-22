@@ -32,7 +32,7 @@ class _SearchPage extends State<SearchPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: MyAppBar("검색",(){}),
+        appBar: MyAppBar("검색",(){},true),
         body: const WhereCos(),
     );
   }

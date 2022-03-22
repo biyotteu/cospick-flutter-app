@@ -178,7 +178,7 @@ class _WriteCosState extends State<WriteCos> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: MyAppBar("코스 작성하기", onStepCancel),
+      appBar: MyAppBar("코스 작성하기", onStepCancel,true),
       body: form[currentStep],
     );
   }
