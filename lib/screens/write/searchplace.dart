@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:cospick/common/place.dart';
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:http/http.dart' as http;
 
 class SearchPlace extends StatefulWidget {
@@ -14,18 +15,24 @@ class SearchPlace extends StatefulWidget {
 class _SearchPlaceState extends State<SearchPlace> {
   List<Widget> _placesWidget = [];
   void _submit(String text) async{
+    Position _position;
+    var query = "https://dapi.kakao.com/v2/local/search/keyword.json?query="+text;
+    try{
+      _position = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
+      query = query + "&x=" + _position.longitude.toString() + "&y=" + _position.latitude.toString();
+    }catch(e){
+      debugPrint(e.toString());
+    }
+    debugPrint(query);
+    debugPrint("!!!!!!!!!!!!!!");
     final res = await http.get(
-        Uri.parse("https://dapi.kakao.com/v2/local/search/keyword.json?query="+text),
+        Uri.parse(query),
         headers: {"Authorization":"KakaoAK e29f627b9e9dc99381e0b7cd359c1605"}
     );
 
     if(res.statusCode == 200){
-
       Map<String, dynamic> json = jsonDecode(res.body);
-      // final int total = json['display'];
       List<Widget> items = [];
-      debugPrint(json['documents'].toString());
-      debugPrint("------------------------------------------");
       json['documents'].forEach((cur){
         Place p = Place.fromJson(cur);
         p.place_name = p.place_name.replaceAll("<b>", "").replaceAll("</b>", "");
