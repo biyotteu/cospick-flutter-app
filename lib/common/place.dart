@@ -1,3 +1,5 @@
+import 'package:flutter/cupertino.dart';
+
 class Place {
   final double x, y;
   String place_name,
@@ -29,18 +31,18 @@ class Place {
 
   factory Place.fromJson(Map<String, dynamic> json) {
     return Place(
-        x: double.parse(json['x']),
-        y: double.parse(json['y']),
-        place_name: json['place_name'],
-        category_group_code: json['category_group_code'],
-        category_group_name: json['category_group_name'],
-        category_name: json['category_name'],
-        distance: json['distance'],
-        id: json['id'],
-        place_url: json['place_url'],
-        description: json['description'],
-        phone: json['phone'],
-        address_name: json['address_name'],
-        road_address_name: json['road_address_name']);
+        x: double.parse(json['x'] ?? "0"),
+        y: double.parse(json['y'] ?? "0"),
+        place_name: json['place_name'] ?? "",
+        category_group_code: json['category_group_code'] ?? "",
+        category_group_name: json['category_group_name'] ?? "",
+        category_name: json['category_name'] ?? "",
+        distance: json['distance'] ?? "",
+        id: json['id'] ?? "",
+        place_url: json['place_url'] ?? "",
+        description: json['description'] ?? "",
+        phone: json['phone'] ?? "",
+        address_name: json['address_name'] ?? "",
+        road_address_name: json['road_address_name'] ?? "");
   }
 }
