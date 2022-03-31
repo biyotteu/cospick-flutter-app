@@ -10,7 +10,7 @@ AppBar MyAppBar(title, onPressed, isleading){
   }
   return AppBar(
     leading: leading,
-    elevation: 0.0,
+    elevation: 0.5,
     toolbarHeight: 40,
     backgroundColor: Colors.white,
     title: Text(title),

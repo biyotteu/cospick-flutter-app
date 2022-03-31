@@ -11,6 +11,9 @@ class SelectCosmate extends StatefulWidget {
     "pet": false
   };
 
+  isSelected(){
+    return (mate['all']?? false) || (mate['friend']?? false) || (mate['family']?? false) || (mate['couple']?? false) || (mate['pet']?? false);
+  }
   @override
   _SelectCosmateState createState() => _SelectCosmateState();
 }

@@ -7,13 +7,13 @@ import 'package:flutter/material.dart';
 
 class WriteList extends StatefulWidget {
   WriteList({Key? key}) : super(key: key);
-
+  List<Item> itemlist = [];
   @override
   _WriteListState createState() => _WriteListState();
 }
 
 class _WriteListState extends State<WriteList> {
-  List<Item> _itemlist = [];
+
 
   @override
   void didChangeDependencies() {
@@ -23,12 +23,12 @@ class _WriteListState extends State<WriteList> {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      itemCount: _itemlist.length + 1,
+      itemCount: widget.itemlist.length + 1,
       itemBuilder: (context, index) {
-        if (index == _itemlist.length) {
+        if (index == widget.itemlist.length) {
           return _buildAddItem(context);
         }
-        Item item = _itemlist[index];
+        Item item = widget.itemlist[index];
         return _buildItem(context, item, index);
       },
     );
@@ -83,13 +83,12 @@ class _WriteListState extends State<WriteList> {
           );
           if (item == null) return;
           setState(() {
-            _itemlist.add(item);
+            widget.itemlist.add(item);
           });
         },
       ),
     );
   }
-
   _buildItem(context, Item item, index) {
     final Size size = MediaQuery.of(context).size;
     return Stack(
@@ -178,12 +177,21 @@ class _WriteListState extends State<WriteList> {
                   )
                 ],
               ),
-              onTap: () {},
+              onTap: () async {
+                Item newitem = await Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => WriteItem()),
+                );
+                if (item == null) return;
+                setState(() {
+                  widget.itemlist[index] = item;
+                });
+              },
             )),
         Positioned(
           child: IconButton(
               onPressed: () {
-                _itemlist.removeAt(index);
+                widget.itemlist.removeAt(index);
                 setState(() {});
               },
               icon: const Icon(
