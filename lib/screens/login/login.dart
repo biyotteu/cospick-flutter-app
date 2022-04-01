@@ -7,7 +7,7 @@ class Mylogin extends StatelessWidget {
 
   Future<void> _loginButtonPressed() async {
     String authCode = await AuthCodeClient.instance.request();
-    print(authCode);
+    debugPrint(authCode);
   }
 
   void initState(){
