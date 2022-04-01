@@ -318,7 +318,7 @@ class _WriteCosState extends State<WriteCos> {
                   child: const FittedBox(
                     fit: BoxFit.contain,
                     child:  Text(
-                      "코스작성이 완료되었습니다.",
+                      "코스 작성이 완료되었습니다.",
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: Colors.black,
