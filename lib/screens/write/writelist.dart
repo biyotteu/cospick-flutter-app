@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:cospick/common/item.dart';
+import 'package:cospick/models/item.dart';
 import 'package:cospick/screens/write/searchplace.dart';
 import 'package:cospick/screens/write/writeitem.dart';
 import 'package:flutter/material.dart';

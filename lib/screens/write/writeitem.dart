@@ -11,9 +11,9 @@ import 'package:naver_map_plugin/naver_map_plugin.dart';
 import 'package:permission_handler/permission_handler.dart';
 import '../../common/appbar.dart';
 import '../../common/dialog.dart';
-import '../../common/galleryitem.dart';
-import '../../common/item.dart';
-import '../../common/place.dart';
+import '../../models/galleryitem.dart';
+import '../../models/item.dart';
+import '../../models/place.dart';
 
 class WriteItem extends StatefulWidget {
   const WriteItem({Key? key}) : super(key: key);

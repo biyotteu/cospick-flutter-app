@@ -1,4 +1,4 @@
-import 'package:cospick/common/place.dart';
+import 'package:cospick/models/place.dart';
 
 class Item{
   String title,content;

@@ -1,15 +1,11 @@
 import 'package:flutter/material.dart';
 
 AppBar MyAppBar(title, onPressed, isleading){
-  var leading = null;
-  if(isleading){
-    leading = IconButton(
+  return AppBar(
+    leading: isleading ? IconButton(
       icon: const Icon(Icons.chevron_left,color: Colors.black,),
       onPressed: onPressed,
-    );
-  }
-  return AppBar(
-    leading: leading,
+    ):Container(),
     elevation: 0.5,
     toolbarHeight: 40,
     backgroundColor: Colors.white,

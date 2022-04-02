@@ -1,6 +1,7 @@
 import 'package:cospick/common/appbar.dart';
 import 'package:cospick/common/nextbutton.dart';
 import 'package:cospick/common/select_cosmate.dart';
+import 'package:cospick/models/cos.dart';
 import 'package:cospick/screens/write/stepwidget.dart';
 import 'package:cospick/screens/write/writelist.dart';
 import 'package:flutter/material.dart';
@@ -14,11 +15,13 @@ class WriteCos extends StatefulWidget {
 }
 
 class _WriteCosState extends State<WriteCos> {
+  late Cos _cos;
   SelectCosmate select = SelectCosmate();
   WriteList itemList = WriteList();
   List<String> _tags = <String>[];
   int currentStep = 0;
   late List<Widget> form;
+
   late Widget nextbutton;
 
   final _tagController = TextEditingController();
@@ -50,12 +53,16 @@ class _WriteCosState extends State<WriteCos> {
 
   @override
   Widget build(BuildContext context) {
+    final List<AppBar> _appbar = [
+      MyAppBar("코스 작성하기", onStepCancel, true),
+      MyAppBar("코스 작성 완료", onStepCancel, false)
+    ];
+
     Size size = MediaQuery.of(context).size;
     double btnWidth = 360;
     if (MediaQuery.of(context).size.width < 400) {
       btnWidth = MediaQuery.of(context).size.width - 50;
     }
-
     form = [
       Container(
         color: Colors.white,
@@ -346,7 +353,7 @@ class _WriteCosState extends State<WriteCos> {
     ];
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      appBar: MyAppBar("코스 작성하기", onStepCancel, true),
+      appBar: _appbar[currentStep != 3 ? 0 : 1],
       body: Container(
         color: Colors.white,
         margin: const EdgeInsets.only(top: 5),
